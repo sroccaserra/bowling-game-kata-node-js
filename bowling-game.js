@@ -12,7 +12,10 @@ class BowlingGame {
         let score = 0
         let frameIndex = 0
         for (let frame = 0; frame < 10; frame++) {
-            if (this.isSpare(frameIndex)) {
+            if (this.isStrike(frameIndex)) {
+                score += 10 + this._rolls[frameIndex + 1] + this._rolls[frameIndex + 2]
+                frameIndex++
+            } else if (this.isSpare(frameIndex)) {
                 score += 10 + this._rolls[frameIndex + 2]
                 frameIndex += 2
             } else {
@@ -25,6 +28,10 @@ class BowlingGame {
 
     isSpare(frameIndex) {
         return this._rolls[frameIndex] + this._rolls[frameIndex + 1] === 10
+    }
+
+    isStrike(frameIndex) {
+        return this._rolls[frameIndex] === 10
     }
 }
 
