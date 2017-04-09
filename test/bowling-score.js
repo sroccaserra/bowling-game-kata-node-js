@@ -13,6 +13,11 @@ describe('Bowling Game:', () => {
         }
     }
 
+    this.rollSpare = () => {
+        this.game.roll(5)
+        this.game.roll(5)
+    }
+
     context('A gutter game', () => {
         it('has a score of 0', () => {
             this.rollMany(20, 0)
@@ -24,6 +29,15 @@ describe('Bowling Game:', () => {
         it('has a score of 20', () => {
             this.rollMany(20, 1)
             this.game.score().should.equal(20)
+        })
+    })
+
+    context('A game with one spare', () => {
+        it('has a score of 16', () => {
+            this.rollSpare()
+            this.game.roll(3)
+            this.rollMany(17, 0)
+            this.game.score().should.equal(16)
         })
     })
 })
