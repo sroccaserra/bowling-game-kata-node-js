@@ -7,21 +7,6 @@ describe('Bowling Game:', () => {
         this.game = new BowlingGame()
     })
 
-    this.rollMany = (rollNumber, pinNumber) => {
-        for (let i = 0; i < rollNumber; i++) {
-            this.game.roll(pinNumber)
-        }
-    }
-
-    this.rollSpare = () => {
-        this.game.roll(5)
-        this.game.roll(5)
-    }
-
-    this.rollStrike = () => {
-        this.game.roll(10)
-    }
-
     context('A gutter game', () => {
         it('has a score of 0', () => {
             this.rollMany(20, 0)
@@ -58,4 +43,27 @@ describe('Bowling Game:', () => {
             this.game.score().should.equal(24)
         })
     })
+
+    context('A perfect game', () => {
+        it('has a score of 300', () => {
+            this.rollMany(12, 10)
+
+            this.game.score().should.equal(300)
+        })
+    })
+
+    this.rollMany = (rollNumber, pinNumber) => {
+        for (let i = 0; i < rollNumber; i++) {
+            this.game.roll(pinNumber)
+        }
+    }
+
+    this.rollSpare = () => {
+        this.game.roll(5)
+        this.game.roll(5)
+    }
+
+    this.rollStrike = () => {
+        this.game.roll(10)
+    }
 })

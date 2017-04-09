@@ -4,7 +4,6 @@ class BowlingGame {
     }
 
     roll(pinNumber) {
-        this._score += pinNumber
         this._rolls.push(pinNumber)
     }
 
