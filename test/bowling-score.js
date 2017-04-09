@@ -2,12 +2,28 @@ require('chai').should()
 
 const {BowlingGame} = require('../bowling-game.js')
 
-describe('Bowling Game: a gutter game', () => {
-    it('has a score of 0', () => {
+describe('Bowling Game:', () => {
+    beforeEach(() => {
         this.game = new BowlingGame()
-        for (let i = 0; i < 20; i++) {
-            this.game.roll(0)
+    })
+
+    this.rollMany = (rollNumber, pinNumber) => {
+        for (let i = 0; i < rollNumber; i++) {
+            this.game.roll(pinNumber)
         }
-        this.game.score().should.equal(0)
+    }
+
+    context('A gutter game', () => {
+        it('has a score of 0', () => {
+            this.rollMany(20, 0)
+            this.game.score().should.equal(0)
+        })
+    })
+
+    context('An all 1 game game', () => {
+        it('has a score of 20', () => {
+            this.rollMany(20, 1)
+            this.game.score().should.equal(20)
+        })
     })
 })
